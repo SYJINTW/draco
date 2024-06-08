@@ -57,6 +57,15 @@ class GeometryAttribute {
     // predefined use case. Such attributes are often used for a shader specific
     // data.
     GENERIC,
+    //! [YC] start: Add new attribute enum
+    F_DC,
+    F_REST_1,
+    F_REST_2,
+    F_REST_3,
+    OPACITY,
+    SCALE,
+    ROT,
+    //! [YC] end
 #ifdef DRACO_TRANSCODER_SUPPORTED
     // TODO(ostava): Adding a new attribute would be bit-stream change for GLTF.
     // Older decoders wouldn't know what to do with this attribute type. This
@@ -245,16 +254,6 @@ class GeometryAttribute {
         return "TEX_COORD";
       case GENERIC:
         return "GENERIC";
-#ifdef DRACO_TRANSCODER_SUPPORTED
-      case TANGENT:
-        return "TANGENT";
-      case MATERIAL:
-        return "MATERIAL";
-      case JOINTS:
-        return "JOINTS";
-      case WEIGHTS:
-        return "WEIGHTS";
-#endif
       default:
         return "UNKNOWN";
     }
@@ -286,10 +285,6 @@ class GeometryAttribute {
   DataBufferDescriptor buffer_descriptor() const { return buffer_descriptor_; }
   uint32_t unique_id() const { return unique_id_; }
   void set_unique_id(uint32_t id) { unique_id_ = id; }
-#ifdef DRACO_TRANSCODER_SUPPORTED
-  std::string name() const { return name_; }
-  void set_name(std::string name) { name_ = name; }
-#endif
 
  protected:
   // Sets a new internal storage for the attribute.
@@ -458,10 +453,6 @@ class GeometryAttribute {
   // id. It is used to identify each attribute, especially when there are
   // multiple attribute of the same type in a point cloud.
   uint32_t unique_id_;
-
-#ifdef DRACO_TRANSCODER_SUPPORTED
-  std::string name_;
-#endif
 
   friend struct GeometryAttributeHasher;
 };

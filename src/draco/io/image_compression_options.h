@@ -23,13 +23,7 @@
 namespace draco {
 
 // Enum defining image compression formats.
-enum class ImageFormat {
-  NONE,
-  PNG,
-  JPEG,
-  BASIS,
-  WEBP,
-};
+enum class ImageFormat { NONE, PNG, JPEG, BASIS, WEBP };
 
 }  // namespace draco
 

@@ -112,23 +112,23 @@ $ git remote show origin
 * remote origin
   Fetch URL: git@github.com:<username>/draco.git
   Push  URL: git@github.com:<username>/draco.git
-  HEAD branch: main
+  HEAD branch: master
   Remote branch:
-    main tracked
+    master tracked
   Local branch configured for 'git pull':
-    main merges with remote main
+    master merges with remote master
   Local ref configured for 'git push':
-    main pushes to main (up to date)
+    master pushes to master (up to date)
 
 $ git remote show upstream
 * remote upstream
   Fetch URL: git@github.com:google/draco.git
   Push  URL: git@github.com:google/draco.git
-  HEAD branch: main
+  HEAD branch: master
   Remote branch:
-    main tracked
+    master tracked
   Local ref configured for 'git push':
-    main pushes to main (up to date)
+    master pushes to master (up to date)
 ~~~~~
 
 [**See this page**][1] for a longer discussion of managing remotes and general
@@ -242,13 +242,13 @@ Next, visit the `upstream` [homepage]. If you are logged-in, GitHub will be
 aware of your recently pushed branch, and offer an in-page widget for submitting
 a pull request for the project maintainers to consider.
 
-Once your pull request is merged into upstream's main branch, you may
+Once your pull request is merged into upstream's master branch, you may
 synchronize your clone (and remote `origin`) as follows:
 
 ~~~~~
-git co main
+git co master
 git fetch upstream
-git merge upstream/main
+git merge upstream/master
 git push origin
 ~~~~~
 

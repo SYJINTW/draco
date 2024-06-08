@@ -15,7 +15,6 @@
 #include "draco/scene/scene.h"
 
 #include <memory>
-#include <string>
 #include <utility>
 #include <vector>
 
@@ -277,40 +276,18 @@ TEST(SceneTest, TestCopyWithStructuralMetadata) {
   draco::Scene &scene = *scene_ptr;
 
   // Add structural metadata to the scene.
-  draco::StructuralMetadataSchema schema;
+  draco::PropertyTable::Schema schema;
   schema.json.SetString("Data");
-  scene.GetStructuralMetadata().SetSchema(schema);
+  scene.GetStructuralMetadata().SetPropertyTableSchema(schema);
 
   // Copy the scene.
   draco::Scene copy;
   copy.Copy(scene);
 
   // Check that the structural metadata has been copied.
-  ASSERT_EQ(copy.GetStructuralMetadata().GetSchema().json.GetString(), "Data");
-}
-
-TEST(SceneTest, TestCopyWithMetadata) {
-  // Tests copying of a scene with general metadata.
-  auto scene_ptr =
-      draco::ReadSceneFromTestFile("CesiumMilkTruck/glTF/CesiumMilkTruck.gltf");
-  ASSERT_NE(scene_ptr, nullptr);
-  draco::Scene &scene = *scene_ptr;
-
-  // Add metadata to the scene.
-  scene.GetMetadata().AddEntryString("test_name", "test_value");
-  scene.GetMetadata().AddEntryInt("test_int", 101);
-
-  // Copy the scene.
-  draco::Scene copy;
-  copy.Copy(scene);
-
-  // Check that the metadata has been copied.
-  std::string string_val;
-  int int_val;
-  copy.GetMetadata().GetEntryString("test_name", &string_val);
-  copy.GetMetadata().GetEntryInt("test_int", &int_val);
-  ASSERT_EQ(string_val, "test_value");
-  ASSERT_EQ(int_val, 101);
+  ASSERT_EQ(
+      copy.GetStructuralMetadata().GetPropertyTableSchema().json.GetString(),
+      "Data");
 }
 
 #endif  // DRACO_TRANSCODER_SUPPORTED

@@ -90,7 +90,6 @@ class JsonWriter {
   void EndObject();
 
   // Every call to BeginArray should have a matching call to EndArray.
-  void BeginArray();
   void BeginArray(const std::string &name);
   void EndArray();
 

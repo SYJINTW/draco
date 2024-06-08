@@ -81,8 +81,6 @@ class PointCloudBuilder {
   bool SetMetadataForAttribute(draco::PointCloud *pc, long attribute_id,
                                const draco::Metadata *metadata);
   bool AddMetadata(draco::PointCloud *pc, const draco::Metadata *metadata);
-  bool SetNormalizedFlagForAttribute(draco::PointCloud *pc, long attribute_id,
-                                     bool normalized);
 
  private:
   template <typename DataTypeT>

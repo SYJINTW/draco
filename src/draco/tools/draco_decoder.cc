@@ -105,7 +105,9 @@ int main(int argc, char **argv) {
       pc = std::move(in_mesh);
     }
   } else if (geom_type == draco::POINT_CLOUD) {
+    // printf("[YC] Failed to decode it as mesh\n"); // [YC] add: check print
     // Failed to decode it as mesh, so let's try to decode it as a point cloud.
+    // [YC] note: Start timer
     timer.Start();
     draco::Decoder decoder;
     auto statusor = decoder.DecodePointCloudFromBuffer(&buffer);
@@ -113,6 +115,7 @@ int main(int argc, char **argv) {
       return ReturnError(statusor.status());
     }
     pc = std::move(statusor).value();
+    // [YC] note: Stop timer
     timer.Stop();
   }
 
@@ -153,6 +156,7 @@ int main(int argc, char **argv) {
         return -1;
       }
     } else {
+      // printf("[YC] Before save to file\n"); // [YC] add: print to check
       if (!ply_encoder.EncodeToFile(*pc, options.output)) {
         printf("Failed to store the decoded point cloud as PLY.\n");
         return -1;
@@ -176,5 +180,9 @@ int main(int argc, char **argv) {
   }
   printf("Decoded geometry saved to %s (%" PRId64 " ms to decode)\n",
          options.output.c_str(), timer.GetInMs());
+  //! [YC] start: For exp log
+  printf("[YC] Decode\n");
+  printf("[YC] time: %" PRId64 "\n", timer.GetInMs());
+  //! [YC] end
   return 0;
 }

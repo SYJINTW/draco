@@ -76,7 +76,7 @@ class FloatPointsTreeDecoder {
 
   static const uint32_t version_ = 3;
   QuantizationInfo qinfo_;
-  int8_t method_;
+  PointCloudCompressionMethod method_;
   uint32_t num_points_;
   uint32_t compression_level_;
 
@@ -113,7 +113,7 @@ bool FloatPointsTreeDecoder::DecodePointCloud(DecoderBuffer *buffer,
       return false;
     }
 
-    method_ = method_number;
+    method_ = static_cast<PointCloudCompressionMethod>(method_number);
 
     if (method_ == KDTREE) {
       if (!DecodePointCloudKdTreeInternal(buffer, &qpoints)) {

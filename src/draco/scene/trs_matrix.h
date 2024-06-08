@@ -39,10 +39,9 @@ class TrsMatrix {
 
   void Copy(const TrsMatrix &tm);
 
-  TrsMatrix &SetMatrix(const Eigen::Matrix4d &matrix) {
+  void SetMatrix(const Eigen::Matrix4d &matrix) {
     matrix_ = matrix;
     matrix_set_ = true;
-    return *this;
   }
   bool MatrixSet() const { return matrix_set_; }
   StatusOr<const Eigen::Matrix4d> Matrix() const {
@@ -52,10 +51,9 @@ class TrsMatrix {
     return matrix_;
   }
 
-  TrsMatrix &SetTranslation(const Eigen::Vector3d &translation) {
+  void SetTranslation(const Eigen::Vector3d &translation) {
     translation_ = translation;
     translation_set_ = true;
-    return *this;
   }
   bool TranslationSet() const { return translation_set_; }
   StatusOr<const Eigen::Vector3d> Translation() const {
@@ -65,10 +63,9 @@ class TrsMatrix {
     return translation_;
   }
 
-  TrsMatrix &SetRotation(const Eigen::Quaterniond &rotation) {
+  void SetRotation(const Eigen::Quaterniond &rotation) {
     rotation_ = rotation;
     rotation_set_ = true;
-    return *this;
   }
   bool RotationSet() const { return rotation_set_; }
   StatusOr<const Eigen::Quaterniond> Rotation() const {
@@ -78,10 +75,9 @@ class TrsMatrix {
     return rotation_;
   }
 
-  TrsMatrix &SetScale(const Eigen::Vector3d &scale) {
+  void SetScale(const Eigen::Vector3d &scale) {
     scale_ = scale;
     scale_set_ = true;
-    return *this;
   }
   bool ScaleSet() const { return scale_set_; }
   StatusOr<const Eigen::Vector3d> Scale() const {

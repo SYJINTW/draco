@@ -21,54 +21,30 @@
 
 namespace draco {
 
-// Returns true if vectors |a| and |b| have the same size and their entries
-// (unique pointers) point to objects that compare equally.
-template <typename T>
-bool VectorsAreEqual(const std::vector<std::unique_ptr<T>> &a,
-                     const std::vector<std::unique_ptr<T>> &b) {
-  if (a.size() != b.size()) {
-    return false;
-  }
-  for (int i = 0; i < a.size(); ++i) {
-    if (*a[i] != *b[i]) {
-      return false;
-    }
-  }
-  return true;
-}
+StructuralMetadata::StructuralMetadata() {}
 
 bool StructuralMetadata::operator==(const StructuralMetadata &other) const {
-  return schema_ == other.schema_ &&
-         VectorsAreEqual(property_tables_, other.property_tables_) &&
-         VectorsAreEqual(property_attributes_, other.property_attributes_);
+  return property_table_schema_ == other.property_table_schema_ &&
+         property_tables_ == other.property_tables_;
 }
 
 void StructuralMetadata::Copy(const StructuralMetadata &src) {
-  // Copy schema.
-  schema_.json.Copy(src.schema_.json);
-
-  // Copy property tables.
+  property_table_schema_.json.Copy(src.property_table_schema_.json);
   property_tables_.resize(src.property_tables_.size());
   for (int i = 0; i < property_tables_.size(); ++i) {
     property_tables_[i] = std::unique_ptr<PropertyTable>(new PropertyTable());
     property_tables_[i]->Copy(*src.property_tables_[i]);
   }
-
-  // Copy property attributes.
-  property_attributes_.resize(src.property_attributes_.size());
-  for (int i = 0; i < property_attributes_.size(); ++i) {
-    property_attributes_[i] =
-        std::unique_ptr<PropertyAttribute>(new PropertyAttribute());
-    property_attributes_[i]->Copy(*src.property_attributes_[i]);
-  }
 }
 
-void StructuralMetadata::SetSchema(const StructuralMetadataSchema &schema) {
-  schema_ = schema;
+void StructuralMetadata::SetPropertyTableSchema(
+    const PropertyTable::Schema &schema) {
+  property_table_schema_ = schema;
 }
 
-const StructuralMetadataSchema &StructuralMetadata::GetSchema() const {
-  return schema_;
+const PropertyTable::Schema &StructuralMetadata::GetPropertyTableSchema()
+    const {
+  return property_table_schema_;
 }
 
 int StructuralMetadata::AddPropertyTable(
@@ -91,29 +67,6 @@ PropertyTable &StructuralMetadata::GetPropertyTable(int index) {
 
 void StructuralMetadata::RemovePropertyTable(int index) {
   property_tables_.erase(property_tables_.begin() + index);
-}
-
-int StructuralMetadata::AddPropertyAttribute(
-    std::unique_ptr<PropertyAttribute> property_attribute) {
-  property_attributes_.push_back(std::move(property_attribute));
-  return property_attributes_.size() - 1;
-}
-
-int StructuralMetadata::NumPropertyAttributes() const {
-  return property_attributes_.size();
-}
-
-const PropertyAttribute &StructuralMetadata::GetPropertyAttribute(
-    int index) const {
-  return *property_attributes_[index];
-}
-
-PropertyAttribute &StructuralMetadata::GetPropertyAttribute(int index) {
-  return *property_attributes_[index];
-}
-
-void StructuralMetadata::RemovePropertyAttribute(int index) {
-  property_attributes_.erase(property_attributes_.begin() + index);
 }
 
 }  // namespace draco

@@ -59,9 +59,6 @@ bool GeometryAttribute::CopyFrom(const GeometryAttribute &src_att) {
     }
     buffer_->Update(src_att.buffer_->data(), src_att.buffer_->data_size());
   }
-#ifdef DRACO_TRANSCODER_SUPPORTED
-  name_ = src_att.name_;
-#endif
   return true;
 }
 
@@ -90,11 +87,6 @@ bool GeometryAttribute::operator==(const GeometryAttribute &va) const {
   if (byte_offset_ != va.byte_offset_) {
     return false;
   }
-#ifdef DRACO_TRANSCODER_SUPPORTED
-  if (name_ != va.name_) {
-    return false;
-  }
-#endif
   return true;
 }
 

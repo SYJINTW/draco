@@ -69,6 +69,7 @@ StatusOr<std::unique_ptr<PointCloud>> Decoder::DecodePointCloudFromBuffer(
                          GetEncodedGeometryType(in_buffer))
   if (type == POINT_CLOUD) {
 #ifdef DRACO_POINT_CLOUD_COMPRESSION_SUPPORTED
+    // printf("[YC] type == POINT_CLOUD\n"); // [YC] add: check print
     std::unique_ptr<PointCloud> point_cloud(new PointCloud());
     DRACO_RETURN_IF_ERROR(DecodeBufferToGeometry(in_buffer, point_cloud.get()))
     return std::move(point_cloud);

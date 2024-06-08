@@ -113,8 +113,10 @@ bool KdTreeAttributesEncoder::TransformAttributesToPortableFormat() {
 
 bool KdTreeAttributesEncoder::EncodeDataNeededByPortableTransforms(
     EncoderBuffer *out_buffer) {
+  // printf("[YC] KdTreeAttributesEncoder::EncodeDataNeededByPortableTransforms\n"); // [YC] add: print to check
   // Store quantization settings for all attributes that need it.
   for (int i = 0; i < attribute_quantization_transforms_.size(); ++i) {
+    // printf("[YC] i: %d\n", i); // [YC] add: print to check
     attribute_quantization_transforms_[i].EncodeParameters(out_buffer);
   }
 
@@ -127,6 +129,8 @@ bool KdTreeAttributesEncoder::EncodeDataNeededByPortableTransforms(
 
 bool KdTreeAttributesEncoder::EncodePortableAttributes(
     EncoderBuffer *out_buffer) {
+  // printf("[YC] KdTreeAttributesEncoder::EncodePortableAttributes\n"); // [YC] add: print to check
+  
   // Encode the data using the kd tree encoder algorithm. The data is first
   // copied to a PointDVector that provides all the API expected by the core
   // encoding algorithm.

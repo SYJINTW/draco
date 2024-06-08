@@ -51,15 +51,20 @@ class AttributesEncoder {
     if (!TransformAttributesToPortableFormat()) {
       return false;
     }
+    //! [YC] note: Encode portable attribute
+    // printf("[YC] start EncodePortableAttributes\n"); // [YC] add: print to check
     if (!EncodePortableAttributes(out_buffer)) {
       return false;
     }
+    // printf("[YC] end EncodePortableAttributes\n"); // [YC] add: print to check
     // Encode data needed by portable transforms after the attribute is encoded.
     // This corresponds to the order in which the data is going to be decoded by
     // the decoder.
+    // printf("[YC] start EncodeDataNeededByPortableTransforms\n"); // [YC] add: print to check
     if (!EncodeDataNeededByPortableTransforms(out_buffer)) {
       return false;
     }
+    // printf("[YC] end EncodeDataNeededByPortableTransforms\n"); // [YC] add: print to check
     return true;
   }
 

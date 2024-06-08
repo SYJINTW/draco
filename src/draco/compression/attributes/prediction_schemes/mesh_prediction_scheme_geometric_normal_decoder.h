@@ -151,10 +151,6 @@ bool MeshPredictionSchemeGeometricNormalDecoder<
     if (!buffer->Decode(&prediction_mode)) {
       return false;
     }
-    if (prediction_mode > TRIANGLE_AREA) {
-      // Invalid prediction mode.
-      return false;
-    }
 
     if (!predictor_.SetNormalPredictionMode(
             NormalPredictionMode(prediction_mode))) {

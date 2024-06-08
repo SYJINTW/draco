@@ -20,6 +20,8 @@ namespace draco {
 
 Status PointCloudKdTreeEncoder::EncodeGeometryData() {
   const int32_t num_points = point_cloud()->num_points();
+  // printf("[YC] EncodeGeometryData()\n"); // [YC] add: check print
+  // printf("[YC] PointCloudKdTreeEncoder num_points: %d\n", num_points); // [YC] add: check print
   buffer()->Encode(num_points);
   return OkStatus();
 }

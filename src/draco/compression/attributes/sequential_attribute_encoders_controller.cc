@@ -80,6 +80,7 @@ bool SequentialAttributeEncodersController::
 
 bool SequentialAttributeEncodersController::EncodePortableAttributes(
     EncoderBuffer *out_buffer) {
+  printf("[YC] SequentialAttributeEncodersController::EncodePortableAttributes\n"); // [YC] add: print to check
   for (uint32_t i = 0; i < sequential_encoders_.size(); ++i) {
     if (!sequential_encoders_[i]->EncodePortableAttribute(point_ids_,
                                                           out_buffer)) {

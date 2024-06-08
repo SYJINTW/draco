@@ -1,0 +1,17 @@
+{
+    "start_dir_path": "/mnt/data3/syjintw/MM24_3dgs/draco_adjusted",
+    "3dgs_input_path": "myData/ficus_sh2_draco.ply",
+    "draco_output_path": "myData/ficus_sh2_draco.drc",
+    "3dgs_output_path": "myData/ficus_sh2_distorted.ply",
+    "log_dir_path": "myData/ficus_sh2",
+    "qp": 0,
+    "qn": 0,
+    "qfd": 0,
+    "qfr1": 0,
+    "qfr2": 0,
+    "qfr3": 0,
+    "qo": 0,
+    "qs": 0,
+    "qr": 0,
+    "cl": 7
+}

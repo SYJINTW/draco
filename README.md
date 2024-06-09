@@ -1,12 +1,12 @@
 # Draco Compression for 3DGS
 
-1. The name of the open-source project to which you contributed.
+This project is contributed to Draco 3D data compression (https://github.com/google/draco).
 
-2. The problem you identified in the original project.
+The original project didn't support 3D Gaussain Splatting compression. So, we proposed a 3D compression method based on the point cloud compressing method in Draco.
+There are no comparison between the original and our proposed, but we show the figure of R-D curve by using our method to compress 3DGS frame. 
+![RDCurve](http://url/to/img.png)
+More details are shown in the paper.
 
-3. A detailed description of your proposed solution.
-
-4. Comparison of your method & original method.
  
 
 ## Build

@@ -4,7 +4,7 @@ This project is contributed to Draco 3D data compression (https://github.com/goo
 
 The original project didn't support 3D Gaussain Splatting compression. So, we proposed a 3D compression method based on the point cloud compressing method in Draco.
 There are no comparison between the original and our proposed, but we show the figure of R-D curve by using our method to compress 3DGS frame. 
-![RDCurve](http://url/to/img.png)
+![RDCurve](https://github.com/SYJINTW/draco/blob/main/figs/bear_20_all_RD_PSNR_ori.png?raw=true)  
 More details are shown in the paper.
 
  
